@@ -46,7 +46,7 @@
 //}
 
 
-package com.example.wilowachn.ui.viewmodels
+package com.example.wilowachin.viewmodel
 
 import android.app.Application
 import android.util.Log

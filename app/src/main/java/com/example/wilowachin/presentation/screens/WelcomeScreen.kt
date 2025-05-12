@@ -116,7 +116,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 
 @Composable
-fun WelcomeScreen(navController: NavHostController) {
+fun WelcomeScreen(
+    navController: NavHostController
+) {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = Color(0xFFF5F5F5) // Light background color

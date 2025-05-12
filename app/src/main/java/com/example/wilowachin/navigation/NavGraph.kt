@@ -6,9 +6,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.wilowachin.presentation.screens.FirstScreen
 import com.example.wilowachin.presentation.screens.JournalEditorScreen
-import com.example.wilowachin.presentation.screens.ShareJournalScreen
 import com.example.wilowachin.presentation.screens.SignUpScreen
-import com.example.wilowachn.ui.screens.LoginScreen
+import com.example.wilowachin.presentation.screens.LoginScreen
 import com.example.wilowachin.presentation.screens.MyJournalsScreen
 import com.example.wilowachin.presentation.screens.SharedJournalScreen
 import com.example.wilowachin.presentation.screens.WelcomeScreen
@@ -16,10 +15,30 @@ import com.example.wilowachin.presentation.screens.WelcomeScreen
 @Composable
 fun NavGraph(navController: NavHostController) {
     NavHost(navController = navController, startDestination = "firstScreen") {
-        composable("firstScreen") { FirstScreen(onLoginClick = { navController.navigate("loginScreen") }, onSignUpClick = { navController.navigate("signUpScreen") }) }
-        composable("loginScreen") { LoginScreen(navController = navController, onForgotPasswordClick = { /* TODO: Implement */ }, onLoginClick = { email, password -> /* TODO: Implement auth and navigate to welcome */ navController.navigate("welcomeScreen") }) }
-        composable("signUpScreen") { SignUpScreen(navController = navController, onSignUpClick = { email, username, password, confirmPassword -> /* TODO: Implement signup and navigate to welcome */ navController.navigate("welcomeScreen") }) }
-        composable("welcomeScreen") { WelcomeScreen(navController = navController) }
+        composable("firstScreen") {
+            FirstScreen(
+                onLoginClick = { navController.navigate("loginScreen") },
+                onSignUpClick = { navController.navigate("signUpScreen") })
+        }
+        composable("loginScreen") {
+            LoginScreen(
+                navController = navController,
+                onForgotPasswordClick = { /* TODO: Implement */ },
+                onLoginClick = { navController.navigate("welcomeScreen") })
+        }
+        composable("signUpScreen") {
+            SignUpScreen(
+                navController = navController,
+                onSignUpClick = { email, username, password, confirmPassword -> /* TODO: Implement signup and navigate to welcome */ navController.navigate(
+                    "welcomeScreen"
+                )
+                })
+        }
+        composable("welcomeScreen") {
+            WelcomeScreen(
+                navController = navController,
+            )
+        }
         composable("myjournals") { MyJournalsScreen(navController = navController) }
         composable("journalEditor/{journalId}") { backStackEntry ->
             val journalId = backStackEntry.arguments?.getString("journalId")?.toIntOrNull() ?: 0
@@ -37,7 +56,5 @@ fun NavGraph(navController: NavHostController) {
                 navController = TODO()
             )
         }
-        composable("sharedJournalPage") { SharedJournalScreen(navController = navController) }
-        composable("shareJournalScreen") { ShareJournalScreen() }
     }
 }
